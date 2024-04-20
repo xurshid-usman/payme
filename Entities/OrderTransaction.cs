@@ -105,6 +105,12 @@ public class OrderTransactionConfiguration : IEntityTypeConfiguration<OrderTrans
     {
         builder
             .HasKey(key => key.Id);
+        
+        builder
+            .HasOne<Order>()
+            .WithMany()
+            .HasForeignKey(k=>k.OrderId)
+            .IsRequired();
 
         builder.HasIndex(i => i.GatewayTransactionId);
 
